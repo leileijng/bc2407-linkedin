@@ -1,0 +1,252 @@
+# Metadata for Job Vacancy by Industry and Occupational Group, Annual
+---
+Identifier: 'fc0d963c-bb22-4fd7-8948-9140d385df26'
+Name: 'job-vacancy-by-industry-and-occupational-group-annual'
+Title: 'Job Vacancy by Industry and Occupational Group, Annual'
+Description:
+  - 'Source: Labour Market Survey, Manpower Research & Statistics Department, MOM'
+  - ''
+  - 'Job Vacancy refers to the number of unfilled posts for which an establishment
+    is actively recruiting employees from outside the establishment.  They exclude'
+  - ''
+  - 'a)	Positions for which the employees have been appointed, but have not yet commenced
+    duty;'
+  - ''
+  - 'b)	Positions open only to internal transfers, promotion.'
+  - ''
+  - 'Recruitment action to fill a post includes advertising in newspapers, posting
+    notices on the internet (e.g. on online job banks), making word-of-mouth announcements,
+    soliciting employees through employment agencies or job fairs, contacting or interviewing
+    registered job applicants.'
+  - ''
+  - 'Before 2006, data on job vacancies pertain to private sector establishments each
+    with at least 25 employees. From 2006 onwards, data also include the public sector.
+    A new methodology was also introduced in Q1 2010 to improve the estimation of
+    job vacancies. Data spanning back to 2006 have been revised using this methodology.'
+Topics:
+  - 'Economy'
+Keywords:
+  - 'employment'
+  - 'jobs'
+Publisher:
+  Name: 'Ministry of Manpower'
+  Admin 1:
+    Name: 'Teo Chee Hao'
+    Department: 'MOM-Manpower Research & Statistics Department'
+    Email: 'teo_chee_hao@mom.gov.sg'
+  Admin 2:
+    Name: 'Samantha Teo'
+    Department: 'MOM-Manpower Research & Statistics Department'
+    Email: 'samantha_teo@mom.gov.sg'
+Sources:
+  - 'Ministry of Manpower'
+Source Url: 'http://stats.mom.gov.sg/Pages/Job-Vacancy-Summary-Table.aspx'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Annual'
+Coverage: '1990-01-01 to 2020-12-31'
+Last Updated: '2021-06-18T03:19:55.758983'
+Resources:
+  -
+    Identifier: '5d429272-3383-442e-b20b-5306daf55229'
+    Title: 'Job Vacancy - Topline'
+    Url: 'https://storage.data.gov.sg/job-vacancy-by-industry-and-occupational-group-annual/resources/job-vacancy-topline-2021-06-17T06-40-19Z.csv'
+    Format: 'CSV'
+    Coverage: '1990-01-01 to 2020-12-31'
+    Description:
+      - 'Source: Labour Market Survey, Manpower Research & Statistics Department,
+        MOM'
+      - ''
+      - 'Before 2006, the Labour Market Survey covers private sector establishments
+        each with at least 25 employees. From 2006 onwards, the survey also covers
+        the public sector.'
+      - ''
+      - 'Data are rounded to the nearest 100. Hence, they may not add up to the total.'
+      - ''
+      - 'Annual figures are the simple averages of the figures obtained at quarterly
+        intervals.'
+    Last Updated: '2021-06-17T06:40:19.474192'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'job_vacancy'
+        Title: 'Job Vacancy'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'No.of Vacancies'
+  -
+    Identifier: '411996b4-be8c-4fdd-a6ab-ca90abbe116d'
+    Title: 'Job Vacancy by Industry (Level1)'
+    Url: 'https://storage.data.gov.sg/job-vacancy-by-industry-and-occupational-group-annual/resources/job-vacancy-by-industry-level1-2021-06-17T06-41-15Z.csv'
+    Format: 'CSV'
+    Coverage: '1990-01-01 to 2020-12-31'
+    Description:
+      - 'Source: Labour Market Survey, Manpower Research & Statistics Department,
+        MOM'
+      - ''
+      - 'Before 2006, the Labour Market Survey covers private sector establishments
+        each with at least 25 employees. From 2006 onwards, the survey also covers
+        the public sector.'
+      - ''
+      - 'Data are rounded to the nearest 100.  Hence, they may not add up to the total.'
+      - ''
+      - 'Annual figures are the simple averages of the figures obtained at quarterly
+        intervals.'
+      - ''
+      - 'Data may not be strictly comparable due to the various versions of SSIC coding.'
+    Last Updated: '2021-06-17T06:41:15.609244'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'industry1'
+        Title: 'Industry1'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'job_vacancy'
+        Title: 'Job Vacancy'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'No.of Vacancies'
+        Description: '"-" : Data is negligible or not significant'
+  -
+    Identifier: 'c9aa2db3-99f8-45cf-a0f3-7a86fced62df'
+    Title: 'Job Vacancy by Industry (Level 2)'
+    Url: 'https://storage.data.gov.sg/job-vacancy-by-industry-and-occupational-group-annual/resources/job-vacancy-by-industry-level-2-2021-06-17T06-42-04Z.csv'
+    Format: 'CSV'
+    Coverage: '1990-01-01 to 2020-12-31'
+    Description:
+      - 'Source: Labour Market Survey, Manpower Research & Statistics Department,
+        MOM'
+      - ''
+      - 'Before 2006, the Labour Market Survey covers private sector establishments
+        each with at least 25 employees. From 2006 onwards, the survey also covers
+        the public sector.'
+      - ''
+      - 'Data are rounded to the nearest 100.  Hence, they may not add up to the total.'
+      - ''
+      - 'Annual figures are the simple averages of the figures obtained at quarterly
+        intervals.'
+      - ''
+      - 'Data may not be strictly comparable due to the various versions of SSIC coding.'
+    Last Updated: '2021-06-17T06:42:04.543205'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'industry1'
+        Title: 'Industry1'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'industry2'
+        Title: 'Industry2'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'job_vacancy'
+        Title: 'Job Vacancy'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'No.of Vacancies'
+        Description: '"-" : Data is negligible or not significant'
+  -
+    Identifier: 'd87b0111-b770-481e-b34a-4aeb11210a5f'
+    Title: 'Job Vacancy by Industry (Level3)'
+    Url: 'https://storage.data.gov.sg/job-vacancy-by-industry-and-occupational-group-annual/resources/job-vacancy-by-industry-level3-2021-06-17T06-42-17Z.csv'
+    Format: 'CSV'
+    Coverage: '1990-01-01 to 2020-12-31'
+    Description:
+      - 'Source: Labour Market Survey, Manpower Research & Statistics Department,
+        MOM'
+      - ''
+      - 'Before 2006, the Labour Market Survey covers private sector establishments
+        each with at least 25 employees. From 2006 onwards, the survey also covers
+        the public sector.'
+      - ''
+      - 'Data are rounded to the nearest 100.  Hence, they may not add up to the total.'
+      - ''
+      - 'Annual figures are the simple averages of the figures obtained at quarterly
+        intervals.'
+      - ''
+      - 'Data may not be strictly comparable due to the various versions of SSIC coding.'
+    Last Updated: '2021-06-17T06:42:17.769832'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'industry1'
+        Title: 'Industry1'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'industry2'
+        Title: 'Industry2'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'industry3'
+        Title: 'Industry3'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'job_vacancy'
+        Title: 'Job Vacancy'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'No.of Vacancies'
+        Description: '"-" : Data is negligible or not significant'
+  -
+    Identifier: '6d864b4e-63ae-4dac-8674-8b6685b6256b'
+    Title: 'Job Vacancy by Broad Occupational Group'
+    Url: 'https://storage.data.gov.sg/job-vacancy-by-industry-and-occupational-group-annual/resources/job-vacancy-by-broad-occupational-group-2021-06-17T06-43-39Z.csv'
+    Format: 'CSV'
+    Coverage: '1990-01-01 to 2020-12-31'
+    Description:
+      - 'Source: Labour Market Survey, Manpower Research & Statistics Department,
+        MOM'
+      - ''
+      - 'Before 2006, the Labour Market Survey covers private sector establishments
+        each with at least 25 employees. From 2006 onwards, the survey also covers
+        the public sector.'
+      - ''
+      - 'Data are rounded to the nearest 100.  Hence, they may not add up to the total.'
+      - ''
+      - 'Annual figures are the simple averages of the figures obtained at quarterly
+        intervals.'
+    Last Updated: '2021-06-17T06:43:39.818784'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'occupation1'
+        Title: 'Occupation1'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'job_vacancy'
+        Title: 'Job Vacancy'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'No.of Vacancies'
