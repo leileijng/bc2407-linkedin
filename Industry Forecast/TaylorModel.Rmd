@@ -1,0 +1,90 @@
+```{r}
+library("xts")
+library("pracma")
+
+setwd("D:/Work/Projects/bc2407-linkedin/Industry Forecast")
+
+industry.df <- read.csv("Dataset/industry_demand_child_q.csv")
+```
+
+```{r}
+cols <- colnames(within(industry.df, rm('Time')))
+industry.ts <- ts(industry.df, frequency=4, start=c(2006,2))
+```
+
+```{r}
+TaylorApproximation <- function(v0, derivatives, lookAheadPeriod, stepSize){
+  out <- rep(v0, lookAheadPeriod)
+  for (lookAhead in 1:lookAheadPeriod){
+    count <- 1
+    for (derivative in derivatives){
+      out[lookAhead] <- out[lookAhead] + (derivative/factorial(count))*((lookAhead*stepSize)^count)
+      count <- count + 1
+    }
+  }
+  
+  return (out)
+}
+```
+
+```{r}
+TaylorExpansionModelAvg <- function(x, lag, degree, freq, forecastPeriod, stepSize){
+  offset <- lag + degree
+  inSample <- rep(0, length(x) - offset + forecastPeriod)
+  inSample <- ts(inSample, frequency=freq, start=time(x)[offset + 1])
+  derivatives <- rep(0, degree)
+  
+  x_diff <- list()
+  
+  for (deg in 1:degree){
+    x_diff[[deg]] <- diff(x, difference=deg)
+  }
+  
+  for (i in 1:(length(x)-offset)){
+    for (j in 1:degree){
+      derivatives[j] <- mean(x_diff[[j]][(i+(degree-j)):(i+(degree-j)+lag-1)])/stepSize^j
+    }
+    
+    
+    if (i == (length(x)-offset)){
+      print(derivatives)
+      inSample[i] <- TaylorApproximation(x[i+offset-1], derivatives, 1, stepSize)
+      inSample[(i+1):(i+forecastPeriod)] <- TaylorApproximation(x[i+offset], derivatives, forecastPeriod, stepSize)
+      print(TaylorApproximation(x[i+offset], derivatives, forecastPeriod, stepSize))
+    }
+    else{
+      inSample[i] <- TaylorApproximation(x[i+offset-1], derivatives, 1, stepSize)
+    }
+  }
+  
+  return (inSample)
+}
+```
+
+```{r}
+x = linspace(0, 20, 20)
+x = x^2
+x = ts(x, freq=1, start=1)
+diff(x, differences = 2)
+
+```
+
+
+```{r}
+x = linspace(0, 2.5, 250)
+x = exp(-x)*sin(10*x)
+x = ts(x, freq=1, start=1)
+
+a = industry.ts[,5]
+
+pred = TaylorExpansionModelAvg(a, lag=10, degree=4, freq=4, forecastPeriod=8, stepSize=0.25)
+
+plot(a, ylim=c(0, max(a)*1.75), xlim=c(2006.5, 2025))
+lines(pred, lty=2, col='blue')
+
+pred = TaylorExpansionModelAvg(x, lag=1, degree=10, freq=1, forecastPeriod=100, stepSize=(2.5/250))
+
+plot(x, ylim=c(-abs(min(x)*1.2), max(x)*1.2), xlim=c(0, length(x)*1.25))
+lines(pred, lty=2, col='blue')
+```
+
