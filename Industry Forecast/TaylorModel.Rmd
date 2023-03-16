@@ -75,7 +75,7 @@ x = linspace(0, 2.5, 250)
 x = exp(-x)*sin(10*x)
 x = ts(x, freq=1, start=1)
 
-a = industry.ts[,5]
+a = industry.ts[,3]
 
 pred = TaylorExpansionModelAvg(a, lag=10, degree=4, freq=4, forecastPeriod=8, stepSize=0.25)
 
