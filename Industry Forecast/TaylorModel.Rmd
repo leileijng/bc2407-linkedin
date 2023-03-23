@@ -120,20 +120,21 @@ diff(y, differences = 2)/(x[2] - x[1])^2
 
 ```{r}
 x = linspace(0, 1.5, 250)
-x = exp(-x)*sin(10*x)
+x = sin(3*x^2)
 x = ts(x, freq=1, start=1)
 
 a = industry.ts[,3]
 
 pred = TaylorExpansionModelAvg(a, lag=10, degree=4, freq=4, forecastPeriod=8, stepSize=0.25)
 
-plot(a, ylim=c(0, max(pred)*1.1), xlim=c(2006.5, 2025))
-lines(pred, lty=2, col='blue')
+plot(a, ylim=c(0, max(pred)*1.1), xlim=c(2006.5, 2025), lwd=1.75)
+lines(pred, lty=2, col='red')
 
 pred = TaylorExpansionModelAvg(x, lag=1, degree=10, freq=1, forecastPeriod=75, stepSize=(2.5/250))
 
-plot(x, ylim=c(-abs(min(pred)*1.1), max(pred)*1.1), xlim=c(0, length(x)*1.25))
-lines(pred, lty=2, col='blue')
+plot(x, ylim=c(-abs(min(pred)*1.1), max(pred)*1.1), xlim=c(0, length(x)*1.25), lwd=2)
+title('y = sin(3*x^2)')
+lines(pred, lty=2, col='red')
 ```
 
 ```{r}
@@ -141,8 +142,8 @@ for (col in cols){
   print("Creating model for:")
   print(col)
   tempTS <- ts(industry.df[col], frequency=4, start=c(2006,2))
-  pred = TaylorExpansionModelAvg(tempTS, lag=10, degree=2, freq=4, forecastPeriod=8, stepSize=0.25)
+  pred = TaylorExpansionModelAvg(tempTS, lag=15, degree=2, freq=4, forecastPeriod=6, stepSize=0.25)
   plot(tempTS, ylab=col, ylim=c(0, max(pred)*1.1), xlim=c(2006.5, 2025))
-  lines(pred, lty=2, col='blue')
+  lines(pred, lty=2, col='red')
 }
 ```
