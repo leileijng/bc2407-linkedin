@@ -69,40 +69,6 @@ ExpMean <- function(x, p){
 
 
 ```{r}
-TaylorExpansionModelExpAvg <- function(x, lag, degree, freq, forecastPeriod, stepSize){
-  offset <- lag + degree
-  inSample <- rep(0, length(x) - offset + forecastPeriod)
-  inSample <- ts(inSample, frequency=freq, start=time(x)[offset + 1])
-  derivatives <- rep(0, degree)
-  
-  x_diff <- list()
-  
-  for (deg in 1:degree){
-    x_diff[[deg]] <- diff(x, difference=deg)
-  }
-  
-  for (i in 1:(length(x)-offset)){
-    for (j in 1:degree){
-      derivatives[j] <- mean(x_diff[[j]][(i+(degree-j)):(i+(degree-j)+lag-1)])/stepSize^j
-    }
-    
-    
-    if (i == (length(x)-offset)){
-      print(derivatives)
-      inSample[i] <- TaylorApproximation(x[i+offset-1], derivatives, 1, stepSize)
-      inSample[(i+1):(i+forecastPeriod)] <- TaylorApproximation(x[i+offset], derivatives, forecastPeriod, stepSize)
-      print(TaylorApproximation(x[i+offset], derivatives, forecastPeriod, stepSize))
-    }
-    else{
-      inSample[i] <- TaylorApproximation(x[i+offset-1], derivatives, 1, stepSize)
-    }
-  }
-  
-  return (inSample)
-}
-```
-
-```{r}
 TaylorExpansionModelKalman <- function(x, degree, freq, forecastPeriod, stepSize){
   
 }
@@ -138,12 +104,24 @@ lines(pred, lty=2, col='red')
 ```
 
 ```{r}
+forecast <- data.frame(matrix(ncol=33, nrow=60))
+colnames(forecast) <- c("Time", cols)
+forecast["Time"] <- index(ts(start=c(2009, 4), frequency=4, end=c(2024,3)))
+
 for (col in cols){
   print("Creating model for:")
   print(col)
   tempTS <- ts(industry.df[col], frequency=4, start=c(2006,2))
-  pred = TaylorExpansionModelAvg(tempTS, lag=15, degree=2, freq=4, forecastPeriod=6, stepSize=0.25)
+  pred = TaylorExpansionModelAvg(tempTS, lag=12, degree=2, freq=4, forecastPeriod=8, stepSize=0.25)
+  
+  forecast[col] <- pred
+  
   plot(tempTS, ylab=col, ylim=c(0, max(pred)*1.1), xlim=c(2006.5, 2025))
   lines(pred, lty=2, col='red')
 }
+```
+```{r}
+
+forecast[forecast < 0] <- 0
+write.csv(forecast, "Forecast/Industry Forecast.csv", row.names = FALSE)
 ```
