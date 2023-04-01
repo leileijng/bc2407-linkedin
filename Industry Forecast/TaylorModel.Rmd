@@ -1,6 +1,7 @@
 ```{r}
 library("xts")
 library("pracma")
+library("Metrics")
 
 setwd("D:/Work/Projects/bc2407-linkedin/Industry Forecast")
 
@@ -61,18 +62,6 @@ TaylorExpansionModelAvg <- function(x, lag, degree, freq, forecastPeriod, stepSi
 }
 ```
 
-```{r}
-ExpMean <- function(x, p){
-  
-}
-```
-
-
-```{r}
-TaylorExpansionModelKalman <- function(x, degree, freq, forecastPeriod, stepSize){
-  
-}
-```
 
 ```{r}
 x = linspace(0, 20, 20)
@@ -102,11 +91,43 @@ plot(x, ylim=c(-abs(min(pred)*1.1), max(pred)*1.1), xlim=c(0, length(x)*1.25), l
 title('y = sin(3*x^2)')
 lines(pred, lty=2, col='red')
 ```
+```{r}
+MDirAcc <- function(Actual, Forecast, lag=1) {
+    return( mean(sign(diff(Actual, lag=lag))==sign(diff(Forecast, lag=lag))) )
+}
+```
+
+
+
+```{r}
+TE_RMSE <- c()
+TE_MAPE <- c()
+TE_MDA <- c()
+
+for (col in cols){
+  #print("Creating model for:")
+  #print(col)
+  tempTS <- ts(industry.df[col], frequency=4, start=c(2006,2))
+  pred = TaylorExpansionModelAvg(tempTS, lag=12, degree=2, freq=4, forecastPeriod=8, stepSize=0.25)
+  
+  TE_RMSE <- c(TE_RMSE, rmse(pred, tempTS))
+  TE_MAPE <- c(TE_MAPE, mape(pred, tempTS))
+  TE_MDA <- c(TE_MDA, MDirAcc(tempTS, pred, 4))
+  
+  #plot(tempTS, ylab=col, ylim=c(0, max(pred)*1.1), xlim=c(2006.5, 2025))
+  #lines(pred, lty=2, col='red')
+}
+
+TE_RMSE <- mean(TE_RMSE)
+TE_MAPE <- mean(TE_MAPE)
+TE_MDA <- mean(TE_MDA)
+```
+
 
 ```{r}
 forecast <- data.frame(matrix(ncol=33, nrow=60))
 colnames(forecast) <- c("Time", cols)
-forecast["Time"] <- index(ts(start=c(2009, 4), frequency=4, end=c(2024,3)))
+forecast["Time"] <- index(ts(start=c(2009, 4), frequency=4))
 
 for (col in cols){
   print("Creating model for:")

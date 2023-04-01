@@ -1,5 +1,6 @@
 ```{r}
 library("forecast")
+library("Metrics")
 
 setwd("D:/Work/Projects/bc2407-linkedin/Industry Forecast")
 
@@ -11,6 +12,16 @@ cols <- colnames(within(industry.df, rm('Time')))
 ```
 
 ```{r}
+MDirAcc <- function(Actual, Forecast, lag=1) {
+    return( mean(sign(diff(Actual, lag=lag))==sign(diff(Forecast, lag=lag))) )
+}
+```
+
+```{r}
+ARIMA_RMSE <- c()
+ARIMA_MAPE <- c()
+ARIMA_MDA <- c()
+
 for (col in cols){
   print("Creating model for:")
   print(col)
@@ -18,12 +29,28 @@ for (col in cols){
   model <- auto.arima(tempTS)
   pred <- forecast(model, 8)
   inSample <- tempTS - residuals(model)
+  
+  ARIMA_RMSE <- c(ARIMA_RMSE, rmse(inSample, tempTS))
+  ARIMA_MAPE <- c(ARIMA_MAPE, mape(inSample, tempTS))
+  ARIMA_MDA <- c(ARIMA_MDA, MDirAcc(tempTS, inSample, 4))
+  
+  
   plot(pred, ylab=col)
   lines(inSample, lty=2, col='blue')
 }
+
+ARIMA_RMSE <- mean(ARIMA_RMSE)
+ARIMA_MAPE <- mean(ARIMA_MAPE)
+ARIMA_MDA <- mean(ARIMA_MDA)
+
 ```
 
 ```{r}
+HW_RMSE <- c()
+HW_MAPE <- c()
+HW_MDA <- c()
+
+
 for (col in cols){
   print("Creating model for:")
   print(col)
@@ -32,11 +59,20 @@ for (col in cols){
   model <- HoltWinters(tempTS, seasonal="multiplicative")
   pred <- predict(model, 8)
   insample = model$fitted[,1]
+  
+  HW_RMSE <- c(HW_RMSE, rmse(inSample, tempTS))
+  HW_MAPE <- c(HW_MAPE, mape(inSample, tempTS))
+  HW_MDA <- c(HW_MDA, MDirAcc(tempTS, inSample, 4))
 
   plot(tempTS, xlim=c(2006.5, 2025), ylim=c(0, max(tempTS)*1.3))
   lines(model$fitted[,1], lty=2, col='blue')
   lines(pred, col='red')
 }
+
+HW_RMSE <- mean(HW_RMSE)
+HW_MAPE <- mean(HW_MAPE)
+HW_MDA <- mean(HW_MDA)
+
 ```
 
 ```{r}
