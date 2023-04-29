@@ -16,8 +16,8 @@
 A Machine Learning Approach to Enhance User Experience and Engagement on `LinkedIn`. IntelliLink is built upon 3 pillars: **(1) Fraudulent Job Listing Filter**, **(2) Industry Trend Forecasting**, and **(3) Passive Jobseeker Prediction**.
 
 ### Docs
-- [Report](https://github.com/leileijng/bc2407-linkedin/blob/main/BC2407_Team5_Report.docx)
-- [Slide Deck](https://github.com/leileijng/bc2407-linkedin/blob/main/BC2407_Team5_Slides.pptx)
+- [Report](https://github.com/leileijng/bc2407-linkedin/blob/main/BC2407_Team5_Report.pdf)
+- [Slide Deck](https://github.com/leileijng/bc2407-linkedin/blob/main/BC2407_Team5_Slides.pdf)
 
 ### Folders
 - [`📁 HR Analysis`](https://github.com/leileijng/bc2407-linkedin/tree/main/HR%20Analysis): Passive Jobseeker Classfication and Prediction
